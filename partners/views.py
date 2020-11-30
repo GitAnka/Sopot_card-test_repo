@@ -1,6 +1,10 @@
-from django.http import HttpResponse
+from django.views.generic import FormView, ListView
+
+from partners.form import MovieForm
+from partners.models import Movie
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the partners index.")
+class MovieCreateView(FormView):
+    template_name = 'form.html'
+    form_class = MovieForm
 
