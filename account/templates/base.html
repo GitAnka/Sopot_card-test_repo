@@ -14,7 +14,7 @@
                     <a href="{% url "dashboard" %}">Panel główny</a>
                 </li>
                 <li {% if section == "images" %}class="selected"{% endif %}>
-                    <a href="#">Oferta</a>
+                    <a href="{% url "offer_form:offer_list" %}">Oferta</a>
                 </li>
                 <li {% if section == "people" %}class="selected"{% endif %}>
                     <a href="#">Kalendarz wydarzeń</a>

@@ -20,5 +20,5 @@ from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
-    path('', include('offer_form.urls', namespace='offers'))
+    path('offer_form/', include('offer_form.urls', namespace='offers'))
 ]

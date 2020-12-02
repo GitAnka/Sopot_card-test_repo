@@ -7,7 +7,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
     def get_absolute_url(self):
-        return reverse('offers:product_list_by_category',
+        return reverse('offers:offer_list_by_category',
                        args=[self.slug])
 
 
@@ -26,12 +26,12 @@ class Offers(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     adres = models.CharField(max_length=300, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-    bonus = models.FloatField(max_length=3)
+    bonus = models.FloatField(max_length=3, db_index=True)
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
-        return reverse('offers:product_detail',
+        return reverse('offers:offer_detail',
                        args=[self.id, self.slug])
 
 
