@@ -1,0 +1,41 @@
+{% extends "offer_form/base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Oferty{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="sidebar">
+    <h3>Kategorie</h3>
+    <nav>
+        <a href="#" class =""><svg width="28" height="28" VIEWBOX="0 0 28 28" fill="None"></svg>Gastronomia</a>
+        <a href="#" class =""><svg width="28" height="28" VIEWBOX="0 0 28 28" fill="None"></svg>Edukacja</a>
+        <a href="#" class =""><svg width="28" height="28" VIEWBOX="0 0 28 28" fill="None"></svg>Kultura i sztuka</a>
+        <a href="#" class =""><svg width="28" height="28" VIEWBOX="0 0 28 28" fill="None"></svg>Zdrowie i uroda</a>
+        <a href="#" class =""><svg width="28" height="28" VIEWBOX="0 0 28 28" fill="None"></svg>Sport</a>
+        <a href="#" class =""><svg width="28" height="28" VIEWBOX="0 0 28 28" fill="None"></svg>Zakupy</a>
+        <a href="#" class =""><svg width="28" height="28" VIEWBOX="0 0 28 28" fill="None"></svg>Usługi</a>
+        <a href="#" class =""><svg width="28" height="28" VIEWBOX="0 0 28 28" fill="None"></svg>Obiekty noclegowe</a>
+    </nav>
+    <ul>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="main" class="product-list">
+    <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+    {% for product in products %}
+      <div class="item">
+        <a href="{{ product.get_absolute_url }}">
+          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        </a>
+        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+        ${{ product.price }}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
